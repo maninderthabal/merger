@@ -26,7 +26,7 @@ Bool_t ImplantTSScannor::IsInGate()
         return false;
     if(pspmt_low.xa_>30000 || pspmt_low.xb_>30000 || pspmt_low.ya_>30000 || pspmt_low.yb_>30000)
         return false;*///
-    if(pspmt_low.trace_energy_ < 510|| pspmt_low.trace_energy_ > 4050 )
+    if(pspmt_low.trace_energy_ < 1300|| pspmt_low.trace_energy_ > 4050 )
         return false;
         
     return true;
@@ -43,3 +43,11 @@ void MergedImplantTSScannor::SetReader()
 
     return;
 }
+
+Bool_t MergedImplantTSScannor::IsInGate(){
+    if(tree_data_->Get()->output_vec_.size()==1)
+        return true;
+    else 
+        false;
+}
+

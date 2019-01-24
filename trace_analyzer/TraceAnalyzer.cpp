@@ -38,22 +38,33 @@ int TraceAnalyzer::Configure(const std::string &yaml_node_name){
             channel.data_->Clear();
             channel.data_->pspmt_ = pspmt;
 	    channel.data_->external_ts_ = ext;
-	    /** implementation of trace analysis **/
-            if(pspmt.trace.size()>100){
+	  /** implementation of trace analysis **/
+            if((pspmt.trace.size()>100) ){
                /* subtract baseline */
-               const Int_t kNBins = 20;
+               const Int_t kNBins = 30;
                Double_t baseline = 0;
                for(int i=0; i<kNBins; ++i){
                   baseline += pspmt.trace.at(i);
                }
                baseline = baseline/(double)kNBins;
-               /* QDC */
+                if (!pspmt.subtype.CompareTo("dynode_high")){
+                if (baseline < 900.0 || baseline > 1100){
+                     return 0;
+                }
+                }
+               for(int i=0; i<kNBins; ++i){
+		  if(pspmt.trace.at(i)-baseline<-100 || pspmt.trace.at(i)-baseline>100 )
+		     return 0;
+               }
+               /******
                Double_t qdc = -999;
                for(int i=55; i<70; ++i){
                   qdc += pspmt.trace.at(i) - baseline;
-               }
+               } ****/
               // channel.data_->trace_energy_ = qdc;
              //  channel.data_->trace_max_ = (*std::max_element(pspmt.trace.begin(), pspmt.trace.end())); // getting the trace maximum 
+             
+              
                channel.data_->trace_energy_ = (*std::max_element(pspmt.trace.begin(), pspmt.trace.end())); // getting the trace maximum 
 	     /** implementation of trace analysis **/
               }

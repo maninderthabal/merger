@@ -23,28 +23,27 @@ Bool_t BetaTSScannor::IsInGate()
 {
     {   /** checks if this is an implant event **/
         /** if so, record the timestamp and returns false **/
-        auto pspmt_high = tree_data_->Get()->high_gain_;
-        if(pspmt_high.trace_energy_>4050){
-            prev_implant_ = tree_data_->Get()->external_ts_high_;
+        auto pspmt_low = tree_data_->Get()->low_gain_;
+        if(pspmt_low.trace_energy_>1300){
+            prev_implant_ = tree_data_->Get()->external_ts_low_;
             return false;
         }
     }
 
     {
         auto pspmt_high = tree_data_->Get()->high_gain_;
-        if(pspmt_high.trace_energy_<300 || pspmt_high.trace_energy_>4050 )
+        if(pspmt_high.trace_energy_<1400 || pspmt_high.trace_energy_>4050 )
             return false;
         if(pspmt_high.valid_==0 )
             return false;
     }
-
+/*************
     {
         auto pspmt_ts_high = tree_data_->Get()->external_ts_high_;
-        if(pspmt_ts_high-prev_implant_ < 50E+6 && pspmt_ts_high-prev_implant_>0)
+        if(pspmt_ts_high-prev_implant_ < 10E+6 && pspmt_ts_high-prev_implant_>0)   // Rejecting the ringing that foloows the beta events.
             return false;
     }
-
-
+**************/
     return true;
 }
 
