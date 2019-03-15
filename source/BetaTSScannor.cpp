@@ -64,13 +64,14 @@ Bool_t BetaTSScannor::IsInGate()
         if(pspmt_high.valid_ == 0 )
             return false;
     }
-
+/*************
     {
         auto pspmt_ts_high = tree_data_->Get()->external_ts_high_;
         if(pspmt_ts_high-prev_implant_ < 50E+3/40. && pspmt_ts_high-prev_implant_>0)
             return false;
     }
 
+**************/
     return true;
 }
 
