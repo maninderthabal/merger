@@ -58,7 +58,6 @@ void MergedImplantTSScannor::SetReader()
     return;
 }
 
-<<<<<<< HEAD
 Bool_t MergedImplantTSScannor::IsInGate()
 {
     if(tree_data_->Get()->output_vec_.size()==0)
@@ -66,12 +65,4 @@ Bool_t MergedImplantTSScannor::IsInGate()
     else
         return true;
 }
-=======
-Bool_t MergedImplantTSScannor::IsInGate(){
-    if(tree_data_->Get()->output_vec_.size()==1)
-        return true;
-    else 
-        false;
-}
 
->>>>>>> 7a12bc842bef15b4edfa7062a16325700ecea7ef

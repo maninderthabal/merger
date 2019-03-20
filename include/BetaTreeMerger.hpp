@@ -65,7 +65,6 @@ void BetaTreeMerger<TOUT,TIN1,TIN2>::Write()
 */
 template <class TOUT, class TIN1, class TIN2>
 bool BetaTreeMerger<TOUT,TIN1,TIN2>::IsInGate(const TIN1 &in1, const TIN2 &in2)
-<<<<<<< HEAD
 
 {  
     const Double_t kDISTANCE = 0.2;
