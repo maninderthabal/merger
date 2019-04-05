@@ -10,6 +10,7 @@ struct pspmt_struc{
    Double_t trace_energy_ = 0;
    Double_t energy_ = 0;
    Double_t time_ = 0;
+   Double_t energy_sum_ = 0;
 };
 static pspmt_struc DEFAULT_PSPMT_STRUC;
 
@@ -41,6 +42,7 @@ public:
       f11_right_ = obj.f11_right_;
       high_gain_ = obj.high_gain_;
       low_gain_ = obj.low_gain_;
+      dyn_single_ = obj.dyn_single_;
    }
 
    void Clear(){
@@ -58,6 +60,7 @@ public:
       ion_black_ = DEFAULT_BEAMLINE_DETECTOR_STRUC;
       f11_left_ = DEFAULT_BEAMLINE_DETECTOR_STRUC;
       f11_right_ = DEFAULT_BEAMLINE_DETECTOR_STRUC;
+      dyn_single_ = DEFAULT_BEAMLINE_DETECTOR_STRUC;
 
       high_gain_ = DEFAULT_PSPMT_STRUC;
       low_gain_ = DEFAULT_PSPMT_STRUC;
@@ -75,10 +78,11 @@ public:
    beamline_detector_struc ion_black_;
    beamline_detector_struc f11_left_;
    beamline_detector_struc f11_right_;
+   beamline_detector_struc dyn_single_;
    pspmt_struc high_gain_;
    pspmt_struc low_gain_;
   
-   ClassDef(PspmtData,2)
+   ClassDef(PspmtData,4)
 };
 
 
