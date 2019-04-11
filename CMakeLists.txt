@@ -8,6 +8,9 @@ project(merger)
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
 set(PAASS_DIR_PATH "/home/ryokoyam/vandle/trace_yso/paass/install" CACHE STRING "path to paass directory" )
 set(YAML_CPP_PATH "/home/ryokoyam/opt/yaml-cpp" CACHE STRING "path to yaml-cpp")
+set( YAML_CPP_LIB_DIR ${YAML_CPP_PATH}/lib/ CACHE STRING "path to yaml lib")
+set( MERGER_LIB_DIR ${CMAKE_INSTALL_PREFIX}/lib/ CACHE STRING "path to install lib")
+configure_file( anamerger/include/LibraryConfig.h.in ${CMAKE_BINARY_DIR}/generated/LibraryConfig.h)
 
 #---Locate the ROOT package and defines a number of variables (e.g. ROOT_INCLUDE_DIRS)
 find_package(ROOT REQUIRED COMPONENTS RIO Net Proof)
@@ -22,6 +25,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/tree_dump2)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/trace_analyzer)
 include_directories(${YAML_CPP_PATH}/include)
 include_directories(${PAASS_DIR_PATH}/include)
+include_directories(${CMAKE_BINARY_DIR}/generated)
 link_directories(${PAASS_DIR_PATH}/lib)
 link_directories(${YAML_CPP_PATH}/lib)
 link_directories(${PWD}/anaerger/source)
@@ -39,13 +43,15 @@ add_subdirectory(source)
 add_subdirectory(anamerger)
 add_subdirectory(trace_analyzer)
 add_subdirectory(share)
-#add_executable(merger MergerMain.cpp)
+add_executable(merger_main MergerMain.cpp)
 add_executable(merger_pid MergerImpPid.cpp)
 add_executable(merger_beta MergerImpBeta.cpp)
 #add_executable(merger_imp_beta MergerBetaImp.cpp)
 add_executable(anamerger_main anamerger/source/AnamergerMain.cpp)
 add_executable(trace_analyzer_main trace_analyzer/TraceAnalyzerMain.cpp)
 
+target_link_libraries(merger_main ${ROOT_LIBRARIES} yaml-cpp MergerLib
+   TraceAnalyzerLib merger_data_dic)
 target_link_libraries(merger_pid ${ROOT_LIBRARIES} yaml-cpp MergerLib
    TraceAnalyzerLib merger_data_dic)
 target_link_libraries(merger_beta ${ROOT_LIBRARIES} yaml-cpp MergerLib
@@ -61,6 +67,10 @@ install(TARGETS trace_analyzer_main
         LIBRARY DESTINATION lib
         )
 install(TARGETS anamerger_main
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        )
+install(TARGETS merger_main
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
         )
