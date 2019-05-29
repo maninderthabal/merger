@@ -8,6 +8,11 @@
 #include "TraceAnalyzer.hpp"
 #include "YamlReader.hpp"
 
+struct event_info_struc {
+   TString file_name_;
+   ULong64_t pixie_event_num_;
+};
+
 class PspmtAnalyzer {
 public:
    const static std::string kMsgPrefix;
@@ -20,7 +25,7 @@ public:
 
    virtual int Configure(const std::string &yaml_node_name);
    virtual int Begin();
-   virtual int Process(const std::vector<parameter_struc> &pspmt);
+   virtual int Process(std::vector<processor_struct::PSPMT> &pspmt_vec, const ULong64_t ts);
    virtual int Terminate();
 
    void SetEventId(const TString &file_name, const ULong64_t event_num);
@@ -33,8 +38,7 @@ protected:
    TTree *output_tree_;
    PspmtAnalyzerData data_;
    PspmtData pspmt_data_;
-   ULong64_t pixie_event_num_;
-   TString file_name_;
+   event_info_struc event_info_;
    std::vector<processor_struct::CLOVERS> clover_data_;
    std::vector<processor_struct::VANDLES> vandle_data_;
    std::vector<processor_struct::GAMMASCINT> gamma_scint_data_;
