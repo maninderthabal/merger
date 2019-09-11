@@ -1,2 +1,24 @@
-/work/
-/build/
+# gitignore
+
+#Build files
+*.o
+
+#Backup files 
+*~
+*.swp
+*.layout
+*#*
+.*.cmd
+*.orig
+
+#Ignore the build and exec directory
+build/
+*build-*/
+install/
+
+#Ignore IDE files
+*.cbp
+*.layout
+*.save
+.idea/
+.vscode
