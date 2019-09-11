@@ -90,8 +90,8 @@ const TVector3* VANDLEToFCorrector::GetVandlePosition(const processor_struct::VA
     const double z0 = vandle_bar_map_.at(vandle.barNum).GetZZero();
     const double lrffset = vandle_bar_map_.at(vandle.barNum).GetLROffset();
 
-	 const double z = speed_of_light_medium_*0.5*vandle.tdiff; // 
-    const double x = z0*TMath::Cos(angle);
-    const double y = z0*TMath::Sin(angle);
+    const double z = speed_of_light_medium_ * 0.5 * vandle.tdiff;  //
+    const double x = z0 * TMath::Cos(angle);
+    const double y = z0 * TMath::Sin(angle);
     return new TVector3(x, y, z);
 }
