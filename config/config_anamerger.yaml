@@ -6,3 +6,4 @@ AnamergerMain:
     UseProof: True
     #NumEntries: 10000
     #FirstEntry: 0
+    TimeWindow: 0.350

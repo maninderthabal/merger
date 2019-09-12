@@ -57,7 +57,6 @@ protected:
 	TTreeReaderValue <std::vector<processor_struct::CLOVERS>> clover_vec_;
 	TTreeReaderValue <std::vector<processor_struct::VANDLES>> vandle_vec_;
 	ULong64_t total_entry_;
-
 	// array for histograms
 	TObjArray* fHistArray;
 	// output file
