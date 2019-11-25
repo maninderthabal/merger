@@ -66,6 +66,8 @@ protected:
 	TBranch* fBetaBranch;
 	TBranch* fCloverBranch;
 	TBranch* fVandleBranch;
+	TBranch* fGammaBranch;
+
 	Long64_t n_events = 0;
 	std::string file_name_;
 	std::string proof_output_location_;
