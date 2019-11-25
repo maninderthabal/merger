@@ -5,6 +5,8 @@
 
 #include <TApplication.h>
 #include <TChain.h>
+#include "TCutsVandle.h"
+#include <TCutG.h>
 #include <TFile.h>
 #include <TTreeReader.h>
 #include <TTreeReaderArray.h>
@@ -51,7 +53,7 @@ class AnamergerSparseSelector : public TSelector {
     virtual void SlaveTerminate() { tree_reader_.SetTree((TTree*)nullptr); }
     virtual void Terminate();
     void SetTimeWindow(const Double_t& time_window) { time_window_ = time_window; }
-
+    void LoadTCuts();
     void SetOutputFileName(const std::string& file_name) {
         output_file_name_ = file_name;
     }
@@ -60,8 +62,11 @@ class AnamergerSparseSelector : public TSelector {
     TTreeReader tree_reader_;
     TTreeReaderValue<OutputTreeData<PspmtData, OutputTreeData<PspmtData, TreeData>>> beta_;
     TTreeReaderValue<std::vector<processor_struct::CLOVERS>> clover_vec_;
+    TTreeReaderValue<std::vector<processor_struct::GAMMASCINT>> gamma_scint_vec_;
     TTreeReaderValue<std::vector<CorrectedVANDLEData>> vandle_vec_;
     ULong64_t total_entry_;
+
+    TCutG *clover_beta_cut, *hagrid_beta_cut;
 
     // array for histograms
     TObjArray* fHistArray = nullptr;
