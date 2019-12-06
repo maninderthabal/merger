@@ -12,7 +12,6 @@ AnamergerSelector::AnamergerSelector(TTree* mergedData) : tree_reader_(mergedDat
                                                           clover_vec_(tree_reader_, "clover_vec_"),
                                                           gamma_scint_vec_(tree_reader_, "gamma_scint_vec_"),
                                                           vandle_vec_(tree_reader_, "corrected_vandle_vec"),
-                                                          gamma_scint_vec_(tree_reader_, "gamma_scint_vec_"),
                                                           output_file_name_("anamerger_output.root") {
 }
 
@@ -160,7 +159,8 @@ Bool_t AnamergerSelector::Process(Long64_t entry) {
             }
 
             for (const auto& hagrid : *gamma_scint_vec) {
-                if (hagrid.subtype.CompareTo("smallhag") == 0 || hagrid.detNum > 15) {
+                if (hagrid.detNum%2){
+                if (hagrid.subtype.CompareTo("smallhag") == 0 || hagrid.detNum > 15 ) {
                     // Double_t beta_hagrid_dt = hagrid.time - beta->dyn_single_.time_ + 440;  //Fixing the external trace delay
                     if (hagrid_beta_cut->IsInside(hagrid.energy, hagrid.time - beta->dyn_single_.time_ + 440)) {
                         auto hist = (TH2F*)fHistArray->FindObject("TGammaBeta_hagrid");
@@ -175,6 +175,7 @@ Bool_t AnamergerSelector::Process(Long64_t entry) {
                         hist->Fill(hagrid.energy, tib);
                     }
                 }
+            }
             }
 
             for (auto& vandle : *vandle_vec) {

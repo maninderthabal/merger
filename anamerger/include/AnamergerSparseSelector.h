@@ -5,7 +5,6 @@
 
 #include <TApplication.h>
 #include <TChain.h>
-#include "TCutsVandle.h"
 #include <TCutG.h>
 #include <TFile.h>
 #include <TTreeReader.h>
@@ -22,6 +21,7 @@
 #include "OutputTreeData.hpp"
 #include "PaassRootStruct.hpp"
 #include "PspmtData.hpp"
+#include "TCutsVandle.h"
 #include "TF1.h"
 #include "TFile.h"
 #include "TH1.h"
@@ -66,7 +66,7 @@ class AnamergerSparseSelector : public TSelector {
     TTreeReaderValue<std::vector<CorrectedVANDLEData>> vandle_vec_;
     ULong64_t total_entry_;
 
-    TCutG *clover_beta_cut, *hagrid_beta_cut;
+    TCutG *clover_beta_cut, *hagrid_beta_cut, *banana_cut;
 
     // array for histograms
     TObjArray* fHistArray = nullptr;
