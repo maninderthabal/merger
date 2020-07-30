@@ -1,0 +1,17 @@
+{ decls }
+namespace std {  }
+
+[ libTraceAnalyzerData.so ]
+# List of selected classes
+class PspmtAnalyzerData
+class PspmtData
+class TraceAnalyzerData
+class beamline_detector_struc
+class event_info_struc
+class pspmt_data_struc
+class pspmt_struc
+class vector<PspmtAnalyzerData>
+class vector<PspmtData>
+header PspmtAnalyzerData.hpp
+header PspmtData.hpp
+header TraceAnalyzerData.hpp

@@ -1,0 +1,16 @@
+{ decls }
+namespace std {  }
+
+[ libCorrection.so ]
+# List of selected classes
+class CorrectedVANDLEData
+class CorrectionSelector
+class vector<CorrectedVANDLEData>
+class vector<OutputTreeData<PspmtData,TreeData> >
+class vector<PspmtData>
+class vector<TreeData>
+class vector<processor_struct::CLOVERS>
+class vector<processor_struct::GAMMASCINT>
+class vector<processor_struct::VANDLES>
+header CorrectedVANDLEData.h
+header CorrectionSelector.h

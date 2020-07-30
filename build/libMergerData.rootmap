@@ -1,0 +1,15 @@
+{ decls }
+namespace std {  }
+class PspmtData;
+class TreeData;
+template <typename T, typename U> class OutputTreeData;
+
+[ libMergerData.so ]
+# List of selected classes
+class OutputTreeData<OutputTreeData<PspmtData,TreeData>,PspmtData>
+class OutputTreeData<PspmtData,OutputTreeData<PspmtData,TreeData> >
+class OutputTreeData<PspmtData,TreeData>
+class TreeData
+class vector<OutputTreeData<PspmtData,TreeData> >
+class vector<TreeData>
+header BigRIPSTreeData.h

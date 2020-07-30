@@ -35,30 +35,32 @@
 #include "TTreeReader.h"
 #include "TTreeReaderValue.h"
 
-class AnamergerSparseSelector : public TSelector {
-   public:
-    AnamergerSparseSelector(TTree* = 0);
+class AnamergerSparseSelector : public TSelector
+{
+public:
+    AnamergerSparseSelector(TTree * = 0);
     virtual ~AnamergerSparseSelector();
 
     virtual Int_t Version() const { return 2; }
-    virtual void Init(TTree* mergedData);
-    virtual void Begin(TTree* mergedData);
-    virtual void SlaveBegin(TTree* mergedData);
+    virtual void Init(TTree *mergedData);
+    virtual void Begin(TTree *mergedData);
+    virtual void SlaveBegin(TTree *mergedData);
     virtual Bool_t Notify() { return kTRUE; }
     virtual Bool_t Process(Long64_t entry);
-    virtual void SetOption(const char* option) { fOption = option; }
-    virtual void SetObject(TObject* obj) { fObject = obj; }
-    virtual void SetInputList(TList* input) { fInput = input; }
-    virtual TList* GetOutputList() const { return fOutput; }
-    virtual void SlaveTerminate() { tree_reader_.SetTree((TTree*)nullptr); }
+    virtual void SetOption(const char *option) { fOption = option; }
+    virtual void SetObject(TObject *obj) { fObject = obj; }
+    virtual void SetInputList(TList *input) { fInput = input; }
+    virtual TList *GetOutputList() const { return fOutput; }
+    virtual void SlaveTerminate() { tree_reader_.SetTree((TTree *)nullptr); }
     virtual void Terminate();
-    void SetTimeWindow(const Double_t& time_window) { time_window_ = time_window; }
+    void SetTimeWindow(const Double_t &time_window) { time_window_ = time_window; }
     void LoadTCuts();
-    void SetOutputFileName(const std::string& file_name) {
+    void SetOutputFileName(const std::string &file_name)
+    {
         output_file_name_ = file_name;
     }
 
-   protected:
+protected:
     TTreeReader tree_reader_;
     TTreeReaderValue<OutputTreeData<PspmtData, OutputTreeData<PspmtData, TreeData>>> beta_;
     TTreeReaderValue<std::vector<processor_struct::CLOVERS>> clover_vec_;
@@ -66,14 +68,14 @@ class AnamergerSparseSelector : public TSelector {
     TTreeReaderValue<std::vector<CorrectedVANDLEData>> vandle_vec_;
     ULong64_t total_entry_;
 
-    TCutG *clover_beta_cut, *hagrid_beta_cut, *banana_cut;
+    TCutG *clover_beta_cut, *hagrid_beta_cut, *banana_cut, *banana_Ga83, *banana_Cu81, *banana_Cu80, *banana_Cu79;
 
     // array for histograms
-    TObjArray* fHistArray = nullptr;
+    TObjArray *fHistArray = nullptr;
     // output file
-    TFile* fOutputFile = nullptr;
+    TFile *fOutputFile = nullptr;
     std::string output_file_name_;
-    TF1* n_correction = nullptr;
+    TF1 *n_correction = nullptr;
     Double_t time_window_;
 
     ClassDef(AnamergerSparseSelector, 1)

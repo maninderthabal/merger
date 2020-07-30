@@ -1,0 +1,19 @@
+{ decls }
+class PspmtData;
+class TreeData;
+template <typename T, typename U> class OutputTreeData;
+template <typename T> class TTreeReaderValue;
+
+[ libAnamerger.so ]
+# List of selected classes
+class AnamergerSelector
+class AnamergerSparseSelector
+class TTreeReaderValue<OutputTreeData<PspmtData,OutputTreeData<PspmtData,TreeData> > >
+class TTreeReaderValue<std::vector<processor_struct::CLOVERS> >
+class TTreeReaderValue<std::vector<processor_struct::GAMMASCINT> >
+class TTreeReaderValue<std::vector<processor_struct::VANDLES> >
+class TTreeReaderValue<vector<processor_struct::CLOVERS> >
+class TTreeReaderValue<vector<processor_struct::GAMMASCINT> >
+class TTreeReaderValue<vector<processor_struct::VANDLES> >
+header AnamergerSelector.h
+header AnamergerSparseSelector.h
