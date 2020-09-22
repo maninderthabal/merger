@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <map>
 ClassImp(AnamergerSparseSelector);
 
 AnamergerSparseSelector::AnamergerSparseSelector(TTree *mergedData) : tree_reader_(mergedData),
@@ -40,6 +41,7 @@ void AnamergerSparseSelector::Begin(TTree *mergedData)
 
 void AnamergerSparseSelector::SlaveBegin(TTree *mergedData)
 {
+
     if (fHistArray)
     {
         delete fHistArray;
@@ -47,19 +49,21 @@ void AnamergerSparseSelector::SlaveBegin(TTree *mergedData)
     }
     fHistArray = new TObjArray();
 
-    fHistArray->Add(new THnSparseF("Clover_Addback_Tib_ToF_QDC_multi", "Clover_Addback_Tib_ToF_QDC_multi", 5, new Int_t[5]{1000, 8000, 3200, 32000, 18}, new Double_t[5]{-3, 0, -100, 0, 0}, new Double_t[5]{3, 4000, 1500, 32000, 18}));
+    fHistArray->Add(new THnSparseF("Clover_Addback_Tib_ToF_QDC_multi", "Clover_Addback_Tib_ToF_QDC_multi", 5, new Int_t[5]{1000, 16000, 3200, 32000, 18}, new Double_t[5]{-3, 0, -100, 0, 0}, new Double_t[5]{3, 8000, 1500, 32000, 18}));
 
-    fHistArray->Add(new THnSparseF("Clover_Addback_Tib_ToF_QDC_banana", "Clover_Addback_Tib_ToF_QDC_banana", 5, new Int_t[5]{1000, 8000, 3200, 32000, 1000}, new Double_t[5]{-3, 0, -100, 0, -1000}, new Double_t[5]{3, 4000, 1500, 32000, 1000}));
+    fHistArray->Add(new THnSparseF("Clover_Addback_Tib_ToF_QDC_banana", "Clover_Addback_Tib_ToF_QDC_banana", 5, new Int_t[5]{1000, 16000, 3200, 32000, 1000}, new Double_t[5]{-3, 0, -100, 0, -1000}, new Double_t[5]{3, 8000, 1500, 32000, 1000}));
+
+    fHistArray->Add(new THnSparseF("QDC_Pos_tdiff", "QDC_pos_tdiff", 5, new Int_t[5]{1000, 1000, 1000, 3200, 32000}, new Double_t[5]{-3, -200, -200, 0, 0}, new Double_t[5]{3, 200, 200, 1600, 32000}));
 
     fHistArray->Add(new THnSparseF("Hagrid_Tib_ToF_QDC_beta", "Hagrid_Tib_ToF_QDC_beta", 5, new Int_t[5]{1000, 8000, 3200, 32000, 32000}, new Double_t[5]{-3, 0, -100, 0, 0}, new Double_t[5]{3, 4000, 1500, 32000, 32000}));
 
     fHistArray->Add(new THnSparseF("Hagrid_Tib_ToF_QDC_banana", "Hagrid_Tib_ToF_QDC_banana", 5, new Int_t[5]{1000, 8000, 3200, 32000, 32000}, new Double_t[5]{-3, 0, -100, 0, 0}, new Double_t[5]{3, 4000, 1500, 32000, 32000}));
 
-    fHistArray->Add(new THnSparseF("neutron_beta", "neutron_beta", 4, new Int_t[4]{1000, 3200, 2000, 2000}, new Double_t[4]{-3, -100, 0, 0}, new Double_t[4]{3, 1500, 32000, 32000}));
+    fHistArray->Add(new THnSparseF("neutron_beta", "neutron_beta", 7, new Int_t[7]{1000, 3200, 2000, 2000, 10, 48, 240}, new Double_t[7]{-3, -100, 0, 0, -0.5, 0, -60}, new Double_t[7]{3, 1500, 32000, 32000, 9.5, 48, 60}));
 
     fHistArray->Add(new THnSparseF("beta_energy", "beta_energy", 3, new Int_t[3]{1000, 32000, 5000}, new Double_t[3]{-3, 0, 0}, new Double_t[3]{3, 32000, 3000000}));
 
-    fHistArray->Add(new THnSparseF("tib_gamma_clover", "tib_gamma_clover", 2, new Int_t[2]{1000, 8000}, new Double_t[2]{-3, 0}, new Double_t[2]{3, 4000}));
+    fHistArray->Add(new THnSparseF("tib_gamma_clover", "tib_gamma_clover", 3, new Int_t[3]{1000, 16000, 1000}, new Double_t[3]{-3, 0, -1000}, new Double_t[3]{3, 8000, 1000}));
 
     fHistArray->Add(new THnSparseF("tib_neutron_gated_gamma", "tib_neutron_gated_gamma", 2, new Int_t[2]{1000, 8000}, new Double_t[2]{-3, 0}, new Double_t[2]{3, 4000}));
 
@@ -114,9 +118,16 @@ void AnamergerSparseSelector::Init(TTree *mergedData)
 Double_t hagrid_walk_correction(Double_t x, Double_t y)
 
 {
-
     Double_t walk_corrected_timing = x - 51.8564 * exp(-0.0042535100 * y);
     return walk_corrected_timing;
+}
+
+Double_t QDC_Position(Double_t a, Double_t b, Double_t qdcl, Double_t qdcr)
+
+{
+
+    Double_t QDC_Pos = a * 90 * log(qdcl / qdcr) + b;
+    return QDC_Pos;
 }
 
 Double_t neutron_energy(Double_t x)
@@ -188,13 +199,13 @@ Bool_t AnamergerSparseSelector::Process(Long64_t entry)
             if (clover_addback_energy_1 > 0)
             {
                 auto hist = (THnSparse *)fHistArray->FindObject("tib_gamma_clover");
-                hist->Fill(new Double_t[2]{tib, clover_addback_energy_1});
+                hist->Fill(new Double_t[3]{tib, clover_addback_energy_1, tbeta_gamma_1 - 130.165 * exp(-0.00115635 * clover_addback_energy_1)});
             }
 
             if (clover_addback_energy_2 > 0)
             {
                 auto hist = (THnSparse *)fHistArray->FindObject("tib_gamma_clover");
-                hist->Fill(new Double_t[2]{tib, clover_addback_energy_2});
+                hist->Fill(new Double_t[3]{tib, clover_addback_energy_2, tbeta_gamma_2 - 130.165 * exp(-0.00115635 * clover_addback_energy_2)});
             }
 
             if (clover_addback_energy_1 > 0 && clover_addback_energy_2 > 0)
@@ -236,33 +247,47 @@ Bool_t AnamergerSparseSelector::Process(Long64_t entry)
                     }
                 }
 
-            Double_t neutron_multiplicity = 0;
+            Int_t neutron_multiplicity = 0;
             for (auto &vandle : *vandle_vec)
             {
-                if (banana_cut->IsInside(vandle.GetCorrectedToF(), vandle.GetVandleData()->qdc)) // vandle banana gate
+                if (banana_Cu81->IsInside(vandle.GetCorrectedToF(), vandle.GetVandleData()->qdc)) // vandle banana gate
                 {
                     neutron_multiplicity++;
                 }
             }
 
             std::cout << neutron_multiplicity << std::endl;
+
             for (auto &vandle : *vandle_vec)
             {
 
                 // const double tdiff_vb = (double)vandle.GetVandleData()->sTime - (double)beta->dyn_single_.time_;
                 //if (tdiff_vb < 200 || tdiff_vb > 250)
                 //  continue;
-                if (banana_Cu79->IsInside(vandle.GetCorrectedToF(), vandle.GetVandleData()->qdc))
+                //if (banana_Cu81->IsInside(vandle.GetCorrectedToF(), vandle.GetVandleData()->qdc))
                 {
+
                     N_Detected_vandle++;
 
                     {
                         auto hist = (THnSparse *)fHistArray->FindObject("neutron_beta");
-                        hist->Fill(new Double_t[4]{tib, vandle.GetCorrectedToF(), vandle.GetVandleData()->qdc, beta->dyn_single_.energy_});
+                        hist->Fill(new Double_t[7]{tib, vandle.GetCorrectedToF(), vandle.GetVandleData()->qdc, beta->dyn_single_.energy_, neutron_multiplicity, vandle.GetVandleData()->barNum, vandle.GetVandleData()->wcTdiff});
                     }
-                    // for (const auto &clv : *clover_vec)
 
-                    // if (clover_beta_cut->IsInside(clv.energy, clv.time - beta->dyn_single_.time_))
+                    {
+                        auto hist = (THnSparse *)fHistArray->FindObject("QDC_Pos_tdiff");
+
+                        int bar = vandle.GetVandleData()->barNum;
+
+                        Double_t qdc_pos = QDC_Position(BarCalParameter.at(bar).first, BarCalParameter.at(bar).second, vandle.GetVandleData()->qdcL, vandle.GetVandleData()->qdcR);
+
+                        if (abs(qdc_pos - 7.4 * vandle.GetVandleData()->wcTdiff) < 70.0)
+                        {
+
+                            hist->Fill(new Double_t[5]{tib, qdc_pos, 7.4 * vandle.GetVandleData()->wcTdiff, vandle.GetCorrectedToF(), vandle.GetVandleData()->qdc});
+                        }
+                    }
+
                     {
                         auto hist = (THnSparse *)fHistArray->FindObject("Clover_Addback_Tib_ToF_QDC_banana");
 
@@ -354,7 +379,7 @@ void AnamergerSparseSelector::LoadTCuts()
         banana_Cu81->SetPoint(it, TCutsVandle::banana_Cu81_cut.at(it).first, TCutsVandle::banana_Cu81_cut.at(it).second);
     }
 
-    banana_Cu79 = new TCutG("banana_Cu81", TCutsVandle::banana_Cu79_cut.size());
+    banana_Cu79 = new TCutG("banana_Cu79", TCutsVandle::banana_Cu79_cut.size());
     for (UInt_t it = 0; it < TCutsVandle::banana_Cu79_cut.size(); it++)
     {
         banana_Cu79->SetPoint(it, TCutsVandle::banana_Cu79_cut.at(it).first, TCutsVandle::banana_Cu79_cut.at(it).second);
@@ -362,13 +387,14 @@ void AnamergerSparseSelector::LoadTCuts()
 }
 
 void AnamergerSparseSelector::Terminate()
+
 {
     if (fOutputFile)
     {
         delete fOutputFile;
         fOutputFile = nullptr;
     }
-    fOutputFile = new TFile("Cu80_sparses_banana.root", "recreate");
+    fOutputFile = new TFile("Ga84_sparses.root", "recreate");
     std::cout << "[AnamergerSparseSelector::Terminate()]: output file: " << output_file_name_ << std::endl;
     // write the histograms
     TIter next(GetOutputList());
