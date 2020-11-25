@@ -1,9 +1,9 @@
 AnamergerMain:
     TreeName: mergedCorrectedBeta
-    MergerListName: "./anamergerListGa84.txt"
+    MergerListName: "./anamergerListGa86.txt"
     NumWorkers: 20
     PrintFrequency: 10000
     UseProof: True
     NumEntries: 30000000
     #FirstEntry: 0
-    TimeWindow: 1.0
+    TimeWindow: 0.5

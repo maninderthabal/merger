@@ -6,52 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../anamerger/include/AnamergerSelector.h
-TCutG.h
--
-unistd.h
--
-iomanip
--
-iostream
--
-vector
--
-BigRIPSTreeData.h
-../anamerger/include/BigRIPSTreeData.h
-CorrectedVANDLEData.h
-../anamerger/include/CorrectedVANDLEData.h
-OutputTreeData.hpp
-../anamerger/include/OutputTreeData.hpp
-PaassRootStruct.hpp
-../anamerger/include/PaassRootStruct.hpp
-PspmtData.hpp
-../anamerger/include/PspmtData.hpp
-TCutsVandle.h
-../anamerger/include/TCutsVandle.h
-TF1.h
-../anamerger/include/TF1.h
-TFile.h
-../anamerger/include/TFile.h
-TH1.h
-../anamerger/include/TH1.h
-TH2.h
-../anamerger/include/TH2.h
-TMath.h
-../anamerger/include/TMath.h
-TParameter.h
-../anamerger/include/TParameter.h
-TProofServ.h
-../anamerger/include/TProofServ.h
-TSelector.h
-../anamerger/include/TSelector.h
-TTree.h
-../anamerger/include/TTree.h
-TTreeReader.h
-../anamerger/include/TTreeReader.h
-TTreeReaderValue.h
-../anamerger/include/TTreeReaderValue.h
-
 ../anamerger/include/AnamergerSparseSelector.h
 TApplication.h
 -
@@ -115,6 +69,10 @@ TTreeReader.h
 ../anamerger/include/TTreeReader.h
 TTreeReaderValue.h
 ../anamerger/include/TTreeReaderValue.h
+map
+-
+map
+-
 
 ../anamerger/include/CorrectedVANDLEData.h
 iostream
@@ -148,20 +106,6 @@ PaassRootStruct.hpp
 PaassRootStruct.hpp
 ../trace_analyzer/PaassRootStruct.hpp
 
-/home/msingh9/vandle18/YSO_trace_analysis/merger/anamerger/source/AnamergerSelector.cpp
-AnamergerSelector.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/anamerger/source/AnamergerSelector.h
-TMath.h
--
-TStyle.h
--
-fstream
--
-iostream
--
-string
--
-
 /home/msingh9/vandle18/YSO_trace_analysis/merger/anamerger/source/AnamergerSparseSelector.cpp
 AnamergerSparseSelector.h
 /home/msingh9/vandle18/YSO_trace_analysis/merger/anamerger/source/AnamergerSparseSelector.h
@@ -171,58 +115,8 @@ iostream
 -
 string
 -
-
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/G__Anamerger.cxx
-stddef.h
+map
 -
-stdio.h
--
-stdlib.h
--
-string.h
--
-assert.h
--
-RConfig.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/RConfig.h
-TClass.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TClass.h
-TDictAttributeMap.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TDictAttributeMap.h
-TInterpreter.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TInterpreter.h
-TROOT.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TROOT.h
-TBuffer.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TBuffer.h
-TMemberInspector.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TMemberInspector.h
-TInterpreter.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TInterpreter.h
-TVirtualMutex.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TVirtualMutex.h
-TError.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TError.h
-RtypesImp.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/RtypesImp.h
-TIsAProxy.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TIsAProxy.h
-TFileMergeInfo.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TFileMergeInfo.h
-algorithm
--
-TCollectionProxyInfo.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TCollectionProxyInfo.h
-TDataMember.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/source/TDataMember.h
-../include/AnamergerSelector.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/include/AnamergerSelector.h
-../include/AnamergerSparseSelector.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/include/AnamergerSparseSelector.h
-../include/AnamergerSelector.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/include/AnamergerSelector.h
-../include/AnamergerSparseSelector.h
-/home/msingh9/vandle18/YSO_trace_analysis/merger/build/anamerger/include/AnamergerSparseSelector.h
 
 /opt/root/6.18.04/include/Bytes.h
 Rtypes.h
@@ -267,10 +161,6 @@ VecCore/VecCore
 -
 Rtypes.h
 /opt/root/6.18.04/include/Math/Rtypes.h
-
-/opt/root/6.18.04/include/RConfig.h
-ROOT/RConfig.hxx
--
 
 /opt/root/6.18.04/include/RConfigure.h
 
@@ -458,12 +348,6 @@ ROOT/RConfig.hxx
 stddef.h
 -
 
-/opt/root/6.18.04/include/RtypesImp.h
-TMemberInspector.h
-/opt/root/6.18.04/include/TMemberInspector.h
-TError.h
-/opt/root/6.18.04/include/TError.h
-
 /opt/root/6.18.04/include/TApplication.h
 TObject.h
 /opt/root/6.18.04/include/TObject.h
@@ -519,10 +403,6 @@ Rtypes.h
 /opt/root/6.18.04/include/Rtypes.h
 
 /opt/root/6.18.04/include/TAttMarker.h
-Rtypes.h
-/opt/root/6.18.04/include/Rtypes.h
-
-/opt/root/6.18.04/include/TAttText.h
 Rtypes.h
 /opt/root/6.18.04/include/Rtypes.h
 
@@ -690,27 +570,9 @@ thread
 unordered_set
 -
 
-/opt/root/6.18.04/include/TCollectionProxyInfo.h
-TError.h
-/opt/root/6.18.04/include/TError.h
-vector
--
-forward_list
--
-
-/opt/root/6.18.04/include/TColor.h
-TNamed.h
-/opt/root/6.18.04/include/TNamed.h
-TArrayI.h
-/opt/root/6.18.04/include/TArrayI.h
-
 /opt/root/6.18.04/include/TCutG.h
 TGraph.h
 /opt/root/6.18.04/include/TGraph.h
-
-/opt/root/6.18.04/include/TDataMember.h
-TDictionary.h
-/opt/root/6.18.04/include/TDictionary.h
 
 /opt/root/6.18.04/include/TDataType.h
 TDictionary.h
@@ -721,12 +583,6 @@ string
 -
 Rtypes.h
 /opt/root/6.18.04/include/Rtypes.h
-
-/opt/root/6.18.04/include/TDictAttributeMap.h
-TObject.h
-/opt/root/6.18.04/include/TObject.h
-THashTable.h
-/opt/root/6.18.04/include/THashTable.h
 
 /opt/root/6.18.04/include/TDictionary.h
 TNamed.h
@@ -813,12 +669,6 @@ ROOT/TRWSpinLock.hxx
 /opt/root/6.18.04/include/ROOT/TRWSpinLock.hxx
 mutex
 -
-
-/opt/root/6.18.04/include/TFileMergeInfo.h
-TObject.h
-/opt/root/6.18.04/include/TObject.h
-TString.h
-/opt/root/6.18.04/include/TString.h
 
 /opt/root/6.18.04/include/TFitResultPtr.h
 Rtypes.h
@@ -1072,10 +922,6 @@ Rtypes.h
 Rtypes.h
 /opt/root/6.18.04/include/Rtypes.h
 
-/opt/root/6.18.04/include/TMemberInspector.h
-Rtypes.h
-/opt/root/6.18.04/include/Rtypes.h
-
 /opt/root/6.18.04/include/TMethodCall.h
 TDictionary.h
 /opt/root/6.18.04/include/TDictionary.h
@@ -1261,24 +1107,6 @@ stdio.h
 -
 string
 -
-
-/opt/root/6.18.04/include/TStyle.h
-TNamed.h
-/opt/root/6.18.04/include/TNamed.h
-TAttAxis.h
-/opt/root/6.18.04/include/TAttAxis.h
-TAttLine.h
-/opt/root/6.18.04/include/TAttLine.h
-TAttFill.h
-/opt/root/6.18.04/include/TAttFill.h
-TAttText.h
-/opt/root/6.18.04/include/TAttText.h
-TAttMarker.h
-/opt/root/6.18.04/include/TAttMarker.h
-TArrayI.h
-/opt/root/6.18.04/include/TArrayI.h
-TColor.h
-/opt/root/6.18.04/include/TColor.h
 
 /opt/root/6.18.04/include/TSysEvtHandler.h
 TObject.h

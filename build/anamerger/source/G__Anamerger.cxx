@@ -258,7 +258,7 @@ namespace ROOT {
       ::AnamergerSparseSelector *ptr = 0;
       static ::TVirtualIsAProxy* isa_proxy = new ::TInstrumentedIsAProxy< ::AnamergerSparseSelector >(0);
       static ::ROOT::TGenericClassInfo 
-         instance("AnamergerSparseSelector", ::AnamergerSparseSelector::Class_Version(), "AnamergerSparseSelector.h", 38,
+         instance("AnamergerSparseSelector", ::AnamergerSparseSelector::Class_Version(), "AnamergerSparseSelector.h", 40,
                   typeid(::AnamergerSparseSelector), ::ROOT::Internal::DefineBehavior(ptr, ptr),
                   &::AnamergerSparseSelector::Dictionary, isa_proxy, 4,
                   sizeof(::AnamergerSparseSelector) );
@@ -468,6 +468,69 @@ namespace ROOT {
       ((current_t*)p)->~current_t();
    }
 } // end of namespace ROOT for class ::AnamergerSparseSelector
+
+namespace ROOT {
+   static TClass *maplEintcOpairlEdoublecOdoublegRsPgR_Dictionary();
+   static void maplEintcOpairlEdoublecOdoublegRsPgR_TClassManip(TClass*);
+   static void *new_maplEintcOpairlEdoublecOdoublegRsPgR(void *p = 0);
+   static void *newArray_maplEintcOpairlEdoublecOdoublegRsPgR(Long_t size, void *p);
+   static void delete_maplEintcOpairlEdoublecOdoublegRsPgR(void *p);
+   static void deleteArray_maplEintcOpairlEdoublecOdoublegRsPgR(void *p);
+   static void destruct_maplEintcOpairlEdoublecOdoublegRsPgR(void *p);
+
+   // Function generating the singleton type initializer
+   static TGenericClassInfo *GenerateInitInstanceLocal(const map<int,pair<double,double> >*)
+   {
+      map<int,pair<double,double> > *ptr = 0;
+      static ::TVirtualIsAProxy* isa_proxy = new ::TIsAProxy(typeid(map<int,pair<double,double> >));
+      static ::ROOT::TGenericClassInfo 
+         instance("map<int,pair<double,double> >", -2, "map", 96,
+                  typeid(map<int,pair<double,double> >), ::ROOT::Internal::DefineBehavior(ptr, ptr),
+                  &maplEintcOpairlEdoublecOdoublegRsPgR_Dictionary, isa_proxy, 0,
+                  sizeof(map<int,pair<double,double> >) );
+      instance.SetNew(&new_maplEintcOpairlEdoublecOdoublegRsPgR);
+      instance.SetNewArray(&newArray_maplEintcOpairlEdoublecOdoublegRsPgR);
+      instance.SetDelete(&delete_maplEintcOpairlEdoublecOdoublegRsPgR);
+      instance.SetDeleteArray(&deleteArray_maplEintcOpairlEdoublecOdoublegRsPgR);
+      instance.SetDestructor(&destruct_maplEintcOpairlEdoublecOdoublegRsPgR);
+      instance.AdoptCollectionProxyInfo(TCollectionProxyInfo::Generate(TCollectionProxyInfo::MapInsert< map<int,pair<double,double> > >()));
+      return &instance;
+   }
+   // Static variable to force the class initialization
+   static ::ROOT::TGenericClassInfo *_R__UNIQUE_DICT_(Init) = GenerateInitInstanceLocal((const map<int,pair<double,double> >*)0x0); R__UseDummy(_R__UNIQUE_DICT_(Init));
+
+   // Dictionary for non-ClassDef classes
+   static TClass *maplEintcOpairlEdoublecOdoublegRsPgR_Dictionary() {
+      TClass* theClass =::ROOT::GenerateInitInstanceLocal((const map<int,pair<double,double> >*)0x0)->GetClass();
+      maplEintcOpairlEdoublecOdoublegRsPgR_TClassManip(theClass);
+   return theClass;
+   }
+
+   static void maplEintcOpairlEdoublecOdoublegRsPgR_TClassManip(TClass* ){
+   }
+
+} // end of namespace ROOT
+
+namespace ROOT {
+   // Wrappers around operator new
+   static void *new_maplEintcOpairlEdoublecOdoublegRsPgR(void *p) {
+      return  p ? ::new((::ROOT::Internal::TOperatorNewHelper*)p) map<int,pair<double,double> > : new map<int,pair<double,double> >;
+   }
+   static void *newArray_maplEintcOpairlEdoublecOdoublegRsPgR(Long_t nElements, void *p) {
+      return p ? ::new((::ROOT::Internal::TOperatorNewHelper*)p) map<int,pair<double,double> >[nElements] : new map<int,pair<double,double> >[nElements];
+   }
+   // Wrapper around operator delete
+   static void delete_maplEintcOpairlEdoublecOdoublegRsPgR(void *p) {
+      delete ((map<int,pair<double,double> >*)p);
+   }
+   static void deleteArray_maplEintcOpairlEdoublecOdoublegRsPgR(void *p) {
+      delete [] ((map<int,pair<double,double> >*)p);
+   }
+   static void destruct_maplEintcOpairlEdoublecOdoublegRsPgR(void *p) {
+      typedef map<int,pair<double,double> > current_t;
+      ((current_t*)p)->~current_t();
+   }
+} // end of namespace ROOT for class map<int,pair<double,double> >
 
 namespace {
   void TriggerDictionaryInitialization_libAnamerger_Impl() {
